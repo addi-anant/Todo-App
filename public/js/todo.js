@@ -12,19 +12,20 @@ const fetchAllTodo = async () => {
   const todoList = await response.json();
 
   todoList.forEach((todo) => {
-    addToDOM(todo.task, todo.file, todo.completed);
+    addToDOM(todo._id, todo.task, todo.file, todo.completed);
   });
 };
 fetchAllTodo();
 
 // adding a new todo to the DOM.
-const addToDOM = function (task, file, completed) {
+const addToDOM = function (id, task, file, completed) {
   const taskDiv = document.createElement("div");
   taskDiv.classList.add("taskDiv");
 
   const note = document.createElement("p");
   note.innerHTML = task;
   note.classList.add("note");
+  note.setAttribute("noteId", id);
   if (completed) note.classList.add("strike");
 
   const taskImg = document.createElement("img");
@@ -42,11 +43,12 @@ const addToDOM = function (task, file, completed) {
   deleteButton.innerText = "X";
 
   deleteButton.addEventListener("click", function () {
-    const todo = taskDiv.firstElementChild.innerHTML;
+    const id = taskDiv.firstElementChild.getAttribute("noteId");
+    console.log(id);
 
     fetch("deleteTask", {
       method: "POST",
-      body: JSON.stringify({ todo: todo }),
+      body: JSON.stringify({ id: id }),
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
       if (response.status === 200) taskContainer.removeChild(taskDiv);
@@ -64,11 +66,11 @@ const addToDOM = function (task, file, completed) {
 const buttonList = document.getElementsByClassName("delete");
 for (let i = 0; i < buttonList.length; i++) {
   buttonList[i].addEventListener("click", async function () {
-    const todo = buttonList[i].parentElement.firstElementChild.innerText;
+    const id = taskDiv.firstElementChild.getAttribute("noteId");
 
     const response = await fetch("/deleteTask", {
       method: "POST",
-      body: JSON.stringify({ todo: todo }),
+      body: JSON.stringify({ id: id }),
       headers: { "Content-Type": "application/json" },
     });
 
@@ -78,11 +80,11 @@ for (let i = 0; i < buttonList.length; i++) {
 
 // mark a todo as completed.
 const markDone = async (note, taskDiv) => {
-  const todo = taskDiv.firstElementChild.innerHTML;
+  const id = taskDiv.firstElementChild.getAttribute("noteId");
 
   const response = await fetch("/markCompleted", {
     method: "POST",
-    body: JSON.stringify({ todo: todo }),
+    body: JSON.stringify({ id: id }),
     headers: { "Content-Type": "application/json" },
   });
 
@@ -92,11 +94,11 @@ const markDone = async (note, taskDiv) => {
 
 // mark a todo as pending.
 const markPending = async (note, taskDiv) => {
-  const todo = taskDiv.firstElementChild.innerHTML;
+  const id = taskDiv.firstElementChild.getAttribute("noteId");
 
   const response = await fetch("/markPending", {
     method: "POST",
-    body: JSON.stringify({ todo: todo }),
+    body: JSON.stringify({ id: id }),
     headers: { "Content-Type": "application/json" },
   });
 
