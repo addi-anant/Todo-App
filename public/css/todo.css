@@ -1,0 +1,163 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+#wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar > p {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#container {
+  display: flex;
+  width: 70%;
+}
+
+#outerContainer {
+  flex: 1;
+  width: 100%;
+  padding: 40px 25px;
+  background-color: #eeeded;
+  border-radius: 10%;
+}
+
+#outerContainer > h2 {
+  margin: 0px;
+  font-size: 32px;
+}
+
+#taskContainer {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+  gap: 10px;
+  overflow-y: scroll;
+}
+
+.taskDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+.note {
+  flex: 10;
+  max-width: 100%;
+  font-size: 24px;
+  margin: 10px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.taskImg {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  padding-right: 20px;
+}
+
+.taskDiv > input {
+  flex: 1;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.taskDiv > button {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  width: max-content;
+}
+
+#inputDiv {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-bottom: 5px;
+  border-left: 2px solid black;
+  margin-left: 25px;
+  padding-left: 25px;
+}
+
+#addTaskInput {
+  flex: 9;
+  width: 90%;
+  outline: none;
+  border: none;
+  font-size: 24px;
+  resize: none;
+  border: 1px solid lightgrey;
+  padding-left: 5px;
+}
+
+::placeholder {
+  font-size: 24px;
+}
+
+#addTaskButton {
+  flex: 1;
+}
+
+#logout {
+  color: white;
+  background-color: black;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100px;
+}
+
+#welcome {
+  width: max-content;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 7px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+input {
+  padding: 10px 0px;
+}
+
+.submit-btn {
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
